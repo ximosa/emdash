@@ -12,13 +12,24 @@ export interface BlogSiteIdentitySettings {
 	favicon?: MediaReference;
 }
 
-const DEFAULT_SITE_TITLE = "My Blog";
-const DEFAULT_SITE_TAGLINE = "Thoughts, stories, and ideas.";
+const DEFAULT_SITE_TITLE = "webgae";
+const DEFAULT_SITE_TAGLINE = "Agencia de desarrollo web para marcas que quieren crecer.";
+const LEGACY_SITE_TITLE = "My Blog";
+const LEGACY_SITE_TAGLINE = "Thoughts on building for the web";
 
 export function resolveBlogSiteIdentity(settings?: BlogSiteIdentitySettings) {
+	const rawTitle = settings?.title?.trim();
+	const rawTagline = settings?.tagline?.trim();
+
 	return {
-		siteTitle: settings?.title ?? DEFAULT_SITE_TITLE,
-		siteTagline: settings?.tagline ?? DEFAULT_SITE_TAGLINE,
+		siteTitle:
+			!rawTitle || rawTitle === LEGACY_SITE_TITLE
+				? DEFAULT_SITE_TITLE
+				: rawTitle,
+		siteTagline:
+			!rawTagline || rawTagline === LEGACY_SITE_TAGLINE
+				? DEFAULT_SITE_TAGLINE
+				: rawTagline,
 		siteLogo: settings?.logo?.url ? settings.logo : null,
 		siteFavicon: settings?.favicon?.url ?? null,
 	};

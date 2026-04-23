@@ -1,0 +1,197 @@
+---
+import { getSiteSettings } from "emdash";
+import Base from "../layouts/Base.astro";
+import { resolveBlogSiteIdentity } from "../utils/site-identity";
+
+const { siteTitle } = resolveBlogSiteIdentity(await getSiteSettings());
+const seoTitle = `Contacto | ${siteTitle}`;
+const seoDescription =
+	"Cuentanos tu proyecto y recibe una propuesta para tu nueva web en webgae.";
+---
+
+<Base title={seoTitle} description={seoDescription}>
+	<section class="contact">
+		<header class="contact-head">
+			<p class="eyebrow">Contacto</p>
+			<h1>Solicitar propuesta</h1>
+			<p>
+				Cuentanos que necesitas y te respondemos con una propuesta clara de
+				alcance, tiempos y presupuesto.
+			</p>
+		</header>
+
+		<div class="contact-grid">
+			<article class="contact-card">
+				<h2>Habla con webgae</h2>
+				<p>Tambien puedes escribirnos directamente y coordinamos una llamada.</p>
+				<ul>
+					<li>Email: <a href="mailto:info@webgae.com">info@webgae.com</a></li>
+					<li>Email alternativo: <a href="mailto:ximosa@gmail.com">ximosa@gmail.com</a></li>
+					<li>Respuesta habitual: 24h - 48h</li>
+					<li>Horario: lunes a viernes</li>
+				</ul>
+			</article>
+
+			<form
+				class="contact-form"
+				action="https://formsubmit.co/info@webgae.com"
+				method="post"
+			>
+				<input type="hidden" name="_subject" value="Nueva solicitud desde webgae.com" />
+				<input type="hidden" name="_cc" value="ximosa@gmail.com" />
+				<input type="hidden" name="_captcha" value="false" />
+				<label>
+					Nombre
+					<input type="text" name="nombre" required />
+				</label>
+				<label>
+					Email
+					<input type="email" name="email" required />
+				</label>
+				<label>
+					Empresa
+					<input type="text" name="empresa" />
+				</label>
+				<label>
+					Tipo de proyecto
+					<select name="tipo">
+						<option>Web corporativa</option>
+						<option>Landing de conversion</option>
+						<option>Ecommerce</option>
+						<option>Plataforma a medida</option>
+					</select>
+				</label>
+				<label>
+					Mensaje
+					<textarea
+						name="mensaje"
+						rows={5}
+						placeholder="Objetivos, plazos y contexto del proyecto"
+						required
+					></textarea>
+				</label>
+				<button type="submit">Enviar solicitud</button>
+			</form>
+		</div>
+	</section>
+</Base>
+
+<style>
+	.contact {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: var(--spacing-16) var(--spacing-6);
+	}
+
+	.contact-head {
+		max-width: 64ch;
+		margin-bottom: var(--spacing-8);
+	}
+
+	.eyebrow {
+		font-size: var(--font-size-xs);
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-muted);
+	}
+
+	.contact-head h1 {
+		font-size: clamp(2rem, 4vw, 3rem);
+		margin: var(--spacing-2) 0 var(--spacing-3);
+	}
+
+	.contact-head p {
+		color: var(--color-text-secondary);
+		font-size: var(--font-size-lg);
+	}
+
+	.contact-grid {
+		display: grid;
+		grid-template-columns: 1fr 1.4fr;
+		gap: var(--spacing-6);
+	}
+
+	.contact-card,
+	.contact-form {
+		border: 1px solid var(--color-border);
+		border-radius: 14px;
+		padding: var(--spacing-6);
+		background: var(--color-bg);
+	}
+
+	.contact-card h2 {
+		margin-bottom: var(--spacing-3);
+	}
+
+	.contact-card p {
+		color: var(--color-text-secondary);
+		margin-bottom: var(--spacing-4);
+	}
+
+	.contact-card ul {
+		list-style: none;
+		display: grid;
+		gap: var(--spacing-2);
+	}
+
+	.contact-form {
+		display: grid;
+		gap: var(--spacing-4);
+	}
+
+	.contact-form label {
+		display: grid;
+		gap: var(--spacing-2);
+		font-size: var(--font-size-sm);
+		font-weight: 500;
+	}
+
+	.contact-form input,
+	.contact-form select,
+	.contact-form textarea {
+		width: 100%;
+		padding: var(--spacing-3);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius);
+		font: inherit;
+		color: var(--color-text);
+		background: var(--color-bg);
+	}
+
+	.contact-form input:focus,
+	.contact-form select:focus,
+	.contact-form textarea:focus {
+		outline: none;
+		border-color: var(--color-accent);
+		box-shadow: 0 0 0 3px var(--color-accent-ring);
+	}
+
+	.contact-form button {
+		border: none;
+		border-radius: var(--radius);
+		padding: var(--spacing-3) var(--spacing-5);
+		font: inherit;
+		font-weight: 600;
+		background: #0c0f1d;
+		color: #fff;
+		cursor: pointer;
+	}
+
+	.contact-form button:hover {
+		background: #1d2a68;
+	}
+
+	@media (max-width: 900px) {
+		.contact-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.contact {
+			padding: var(--spacing-10) var(--spacing-4);
+		}
+	}
+</style>
+
+
