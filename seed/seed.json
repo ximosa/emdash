@@ -15,52 +15,52 @@
 	"collections": [
 		{
 			"slug": "posts",
-			"label": "Posts",
-			"labelSingular": "Post",
+			"label": "Articulos",
+			"labelSingular": "Articulo",
 			"supports": ["drafts", "revisions", "search", "seo"],
 			"commentsEnabled": true,
 			"fields": [
 				{
 					"slug": "title",
-					"label": "Title",
+					"label": "Titulo",
 					"type": "string",
 					"required": true,
 					"searchable": true
 				},
 				{
 					"slug": "featured_image",
-					"label": "Featured Image",
+					"label": "Imagen destacada",
 					"type": "image"
 				},
 				{
 					"slug": "content",
-					"label": "Content",
+					"label": "Contenido",
 					"type": "portableText",
 					"searchable": true
 				},
 				{
 					"slug": "excerpt",
-					"label": "Excerpt",
+					"label": "Extracto",
 					"type": "text"
 				}
 			]
 		},
 		{
 			"slug": "pages",
-			"label": "Pages",
-			"labelSingular": "Page",
+			"label": "Paginas",
+			"labelSingular": "Pagina",
 			"supports": ["drafts", "revisions", "search"],
 			"fields": [
 				{
 					"slug": "title",
-					"label": "Title",
+					"label": "Titulo",
 					"type": "string",
 					"required": true,
 					"searchable": true
 				},
 				{
 					"slug": "content",
-					"label": "Content",
+					"label": "Contenido",
 					"type": "portableText",
 					"searchable": true
 				}
@@ -71,27 +71,27 @@
 	"taxonomies": [
 		{
 			"name": "category",
-			"label": "Categories",
-			"labelSingular": "Category",
+			"label": "Categorias",
+			"labelSingular": "Categoria",
 			"hierarchical": true,
 			"collections": ["posts"],
 			"terms": [
-				{ "slug": "development", "label": "Development" },
-				{ "slug": "design", "label": "Design" },
-				{ "slug": "notes", "label": "Notes" }
+				{ "slug": "development", "label": "Desarrollo" },
+				{ "slug": "design", "label": "Diseno" },
+				{ "slug": "notes", "label": "Notas" }
 			]
 		},
 		{
 			"name": "tag",
-			"label": "Tags",
-			"labelSingular": "Tag",
+			"label": "Etiquetas",
+			"labelSingular": "Etiqueta",
 			"hierarchical": false,
 			"collections": ["posts"],
 			"terms": [
-				{ "slug": "webdev", "label": "Web Development" },
+				{ "slug": "webdev", "label": "Desarrollo web" },
 				{ "slug": "opinion", "label": "Opinion" },
-				{ "slug": "tools", "label": "Tools" },
-				{ "slug": "creativity", "label": "Creativity" }
+				{ "slug": "tools", "label": "Herramientas" },
+				{ "slug": "creativity", "label": "Creatividad" }
 			]
 		}
 	],
@@ -113,11 +113,11 @@
 	"menus": [
 		{
 			"name": "primary",
-			"label": "Primary Navigation",
+			"label": "Navegacion principal",
 			"items": [
-				{ "type": "custom", "label": "Home", "url": "/" },
-				{ "type": "custom", "label": "About", "url": "/pages/about" },
-				{ "type": "custom", "label": "Posts", "url": "/posts" }
+				{ "type": "custom", "label": "Inicio", "url": "/" },
+				{ "type": "custom", "label": "Sobre mi", "url": "/sobre-mi" },
+				{ "type": "custom", "label": "Blog", "url": "/posts" }
 			]
 		}
 	],
@@ -125,28 +125,28 @@
 	"widgetAreas": [
 		{
 			"name": "sidebar",
-			"label": "Sidebar",
-			"description": "Widget area displayed on single post pages",
+			"label": "Barra lateral",
+			"description": "Area de widgets mostrada en articulos individuales",
 			"widgets": [
 				{
 					"type": "component",
 					"componentId": "core:search",
-					"title": "Search"
+					"title": "Buscar"
 				},
 				{
 					"type": "component",
 					"componentId": "core:categories",
-					"title": "Categories"
+					"title": "Categorias"
 				},
 				{
 					"type": "component",
 					"componentId": "core:tags",
-					"title": "Tags"
+					"title": "Etiquetas"
 				},
 				{
 					"type": "component",
 					"componentId": "core:recent-posts",
-					"title": "Recent Posts",
+					"title": "Articulos recientes",
 					"settings": {
 						"count": 5,
 						"showDate": true
@@ -155,7 +155,7 @@
 				{
 					"type": "component",
 					"componentId": "core:archives",
-					"title": "Archives",
+					"title": "Archivo",
 					"settings": {
 						"type": "monthly",
 						"limit": 6

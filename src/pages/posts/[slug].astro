@@ -93,7 +93,7 @@ const otherPostsWithTags = await Promise.all(
 );
 
 const publishDate =
-	post.data.publishedAt?.toLocaleDateString("en-US", {
+	post.data.publishedAt?.toLocaleDateString("es-ES", {
 		year: "numeric",
 		month: "long",
 		day: "numeric",
@@ -131,7 +131,7 @@ const publishDate =
 						bylines.length > 0 && (
 							<div class="meta-block byline-block">
 								<span class="meta-label">
-									{bylines.length === 1 ? "Author" : "Authors"}
+									{bylines.length === 1 ? "Autor" : "Autores"}
 								</span>
 								<div class="bylines">
 									{bylines.map((credit) => (
@@ -160,19 +160,19 @@ const publishDate =
 					{
 						publishDate && (
 							<div class="meta-block">
-								<span class="meta-label">Published</span>
+								<span class="meta-label">Publicado</span>
 								<time class="meta-value">{publishDate}</time>
 							</div>
 						)
 					}
 					<div class="meta-block">
-						<span class="meta-label">Reading time</span>
+						<span class="meta-label">Tiempo de lectura</span>
 						<span class="meta-value">{readingTime} min</span>
 					</div>
 					{
 						tags.length > 0 && (
 							<div class="meta-block">
-								<span class="meta-label">Tags</span>
+						<span class="meta-label">Etiquetas</span>
 								<div class="meta-tags">
 									{tags.map((t) => (
 										<a href={`/tag/${t.slug}`} class="meta-tag">
@@ -213,7 +213,7 @@ const publishDate =
 								</>
 							)
 						}
-						<span>{readingTime} min read</span>
+						<span>{readingTime} min de lectura</span>
 					</div>
 					<h1 class="article-title" {...post.edit.title}>{post.data.title}</h1>
 					{
@@ -236,8 +236,8 @@ const publishDate =
 			{/* Right gutter: TOC + Sidebar widgets */}
 			<aside class="article-sidebar">
 				<div class="sidebar-sticky">
-					<nav class="toc" aria-label="Table of contents">
-						<h4 class="toc-title">On this page</h4>
+					<nav class="toc" aria-label="Tabla de contenidos">
+						<h4 class="toc-title">En esta pagina</h4>
 						<div class="toc-content" id="toc-content">
 							<!-- Populated by JS -->
 						</div>
@@ -254,7 +254,7 @@ const publishDate =
 		otherPostsWithTags.length > 0 && (
 			<section class="more-posts">
 				<div class="more-inner">
-					<h2 class="more-title">Continue reading</h2>
+					<h2 class="more-title">Seguir leyendo</h2>
 					<div class="more-grid">
 						{otherPostsWithTags.map(
 							({ post: p, tags: postTags, bylines: postBylines }) => (
@@ -337,7 +337,60 @@ const publishDate =
 			headings.forEach((heading) => observer.observe(heading));
 		}
 
-		buildToc();
+		// Traducir solo titulos y textos estaticos (no inputs)
+		function localizeUI() {
+			// Titulos de widgets del sidebar
+			const widgetTitles = new Map([
+				["Search", "Buscar"],
+				["Recent Posts", "Articulos recientes"],
+				["Categories", "Categorias"],
+				["Tags", "Etiquetas"],
+				["Archives", "Archivo"],
+			]);
+
+			document.querySelectorAll(".widget__title").forEach((el) => {
+				const text = el.textContent?.trim();
+				if (text) {
+					const translated = widgetTitles.get(text);
+					if (translated) el.textContent = translated;
+				}
+			});
+
+			// Heading de comentarios
+			document.querySelectorAll(".ec-comments-heading").forEach((el) => {
+				const text = el.textContent?.trim() ?? "";
+				if (text === "No comments yet") {
+					el.textContent = "Aun no hay comentarios";
+				} else if (text === "1 Comment") {
+					el.textContent = "1 comentario";
+				} else {
+					const match = text.match(/^(\d+)\s+Comments$/);
+					if (match) el.textContent = `${match[1]} comentarios`;
+				}
+			});
+
+			// Texto del boton de enviar (solo el boton, no inputs)
+			document.querySelectorAll(".ec-comment-form-submit").forEach((el) => {
+				if (el.textContent?.trim() === "Post Comment") {
+					el.textContent = "Publicar comentario";
+				}
+			});
+
+			// Traducir fechas de comentarios
+			const months = new Map([
+				["January", "enero"], ["February", "febrero"], ["March", "marzo"],
+				["April", "abril"], ["May", "mayo"], ["June", "junio"],
+				["July", "julio"], ["August", "agosto"], ["September", "septiembre"],
+				["October", "octubre"], ["November", "noviembre"], ["December", "diciembre"],
+			]);
+			document.querySelectorAll(".ec-comment-date").forEach((el) => {
+				let text = el.textContent ?? "";
+				months.forEach((es, en) => { if (text.includes(en)) text = text.replace(en, es); });
+				el.textContent = text;
+			});
+		}
+
+		localizeUI();
 	</script>
 </Base>
 

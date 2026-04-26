@@ -3,9 +3,11 @@ This is an EmDash site -- a CMS built on Astro with a full admin UI.
 ## Commands
 
 ```bash
-npx emdash dev        # Start dev server (runs migrations, seeds, generates types)
-npx emdash types      # Regenerate TypeScript types from schema
-npx emdash seed seed/seed.json --validate  # Validate seed file
+pnpm bootstrap      # Initial setup (runs emdash init + emdash seed)
+pnpm dev            # Start dev server (runs migrations, seeds, generates types)
+npx emdash types    # Regenerate TypeScript types from schema
+pnpm deploy         # Deploy to Cloudflare (wrangler deploy)
+pnpm typecheck      # Run Astro type check
 ```
 
 The admin UI is at `http://localhost:4321/_emdash/admin`.

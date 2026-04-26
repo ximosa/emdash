@@ -1,7 +1,6 @@
 ---
-import { getEmDashCollection, getSiteSettings } from "emdash";
+import { getSiteSettings } from "emdash";
 import {
-	WidgetArea,
 	EmDashHead,
 	EmDashBodyStart,
 	EmDashBodyEnd,
@@ -42,10 +41,7 @@ const {
 } = Astro.props;
 const { siteTitle, siteTagline, siteLogo, siteFavicon } = resolveBlogSiteIdentity(await getSiteSettings());
 // If title already includes site title (from getSeoMeta), use as-is
-const fullTitle = title.includes(siteTitle) ? title : `${title} — ${siteTitle}`;
-
-// Fetch pages for footer
-const { entries: pages } = await getEmDashCollection("pages");
+const fullTitle = title.includes(siteTitle) ? title : `${title} - ${siteTitle}`;
 
 // Build public page context for plugin contributions
 // SEO data is passed here and rendered securely by EmDashHead
@@ -64,11 +60,9 @@ const pageCtx = createPublicPageContext({
 	siteName: siteTitle,
 });
 
-// Check if user is logged in (for showing admin link)
-const isLoggedIn = !!Astro.locals.user;
-
 const headerLinks = [
 	{ href: "/", label: "Inicio" },
+	{ href: "/sobre-mi", label: "Sobre mi" },
 	{ href: "/#servicios", label: "Servicios" },
 	{ href: "/#proceso", label: "Proceso" },
 	{ href: "/#proyectos", label: "Proyectos" },
@@ -78,7 +72,7 @@ const headerLinks = [
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -129,13 +123,6 @@ const headerLinks = [
 								))
 							}
 						</div>
-					{
-						isLoggedIn && (
-							<a href="/_emdash/admin" class="nav-admin">
-								Admin
-							</a>
-						)
-					}
 				</div>
 			</nav>
 		</header>
@@ -160,6 +147,7 @@ const headerLinks = [
 						<h4 class="footer-heading">Navegacion</h4>
 						<ul class="footer-links">
 							<li><a href="/">Inicio</a></li>
+							<li><a href="/sobre-mi">Sobre mi</a></li>
 							<li><a href="/#servicios">Servicios</a></li>
 							<li><a href="/#proceso">Proceso</a></li>
 							<li><a href="/#proyectos">Proyectos</a></li>
@@ -170,20 +158,19 @@ const headerLinks = [
 					<div class="footer-nav">
 						<h4 class="footer-heading">Recursos</h4>
 						<ul class="footer-links">
-							{
-								pages.slice(0, 3).map((page) => (
-									<li>
-										<a href={`/pages/${page.data.slug || page.id}`}>
-											{page.data.title}
-										</a>
-									</li>
-								))
-							}
+							<li><a href="/sobre-mi">Sobre mi</a></li>
+							<li><a href="/contacto">Contacto</a></li>
 							<li><a href="/rss.xml">Canal RSS</a></li>
+							<li><a href="/_emdash/admin">Acceder al admin</a></li>
 						</ul>
 					</div>
 					<div class="footer-widgets-section">
-						<WidgetArea name="footer" />
+						<div class="footer-about">
+							<h4 class="footer-heading">Sobre</h4>
+							<p class="footer-about-text">
+								Un blog sobre desarrollo web, diseno y esas ideas sueltas que a veces acaban en grandes proyectos.
+							</p>
+						</div>
 					</div>
 				</div>
 					<div class="footer-bottom">
@@ -627,18 +614,6 @@ const headerLinks = [
 				color: var(--color-accent);
 			}
 
-			.nav-admin {
-				font-size: var(--font-size-sm);
-				color: var(--color-muted);
-				text-decoration: none;
-				opacity: 0.5;
-				transition: opacity var(--transition-fast);
-			}
-
-			.nav-admin:hover {
-				opacity: 1;
-			}
-
 			/* Search styling */
 			.site-search {
 				position: relative;
@@ -844,6 +819,13 @@ const headerLinks = [
 				line-height: var(--leading-relaxed);
 			}
 
+			.footer-about-text {
+				color: var(--color-text-secondary);
+				font-size: var(--font-size-sm);
+				line-height: var(--leading-relaxed);
+				max-width: 36ch;
+			}
+
 			.footer-bottom {
 				display: flex;
 				justify-content: space-between;
@@ -954,14 +936,6 @@ const headerLinks = [
 					row-gap: var(--spacing-1);
 					flex-wrap: wrap;
 					justify-content: flex-start;
-				}
-
-				.nav-admin {
-					order: 2;
-					position: absolute;
-					right: var(--spacing-4);
-					top: var(--spacing-3);
-					font-size: var(--font-size-xs);
 				}
 
 				.footer-grid {

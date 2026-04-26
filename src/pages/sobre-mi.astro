@@ -1,0 +1,168 @@
+---
+import { getSiteSettings } from "emdash";
+import Base from "../layouts/Base.astro";
+import { resolveBlogSiteIdentity } from "../utils/site-identity";
+
+const { siteTitle } = resolveBlogSiteIdentity(await getSiteSettings());
+const seoTitle = `Sobre mi | ${siteTitle}`;
+const seoDescription =
+	"Joaquin, desarrollador web especializado en React, Astro, Node.js y WordPress avanzado.";
+---
+
+<Base title={seoTitle} description={seoDescription}>
+	<section class="about">
+		<header class="hero">
+			<p class="eyebrow">Sobre mi</p>
+			<h1>Soy Joaquin, desarrollador web apasionado por el ecosistema moderno.</h1>
+			<p>
+				Acompano proyectos desde el concepto inicial hasta convertirlos en
+				productos digitales de alto rendimiento, priorizando siempre la
+				experiencia de usuario y la calidad del codigo.
+			</p>
+			<p>
+				Me especializo en dos mundos: el desarrollo a medida con JavaScript
+				(React, Astro, Node.js) y WordPress avanzado. Esta combinacion me
+				permite elegir la herramienta perfecta para cada problema.
+			</p>
+		</header>
+
+		<section class="stack">
+			<h2>Stack tecnologico</h2>
+			<div class="grid">
+				<article class="card">
+					<h3>Frontend y modern web</h3>
+					<ul>
+						<li>Astro y Next.js</li>
+						<li>React y TypeScript</li>
+						<li>Tailwind CSS</li>
+						<li>Web Performance (Core Web Vitals)</li>
+					</ul>
+				</article>
+				<article class="card">
+					<h3>Backend y CMS</h3>
+					<ul>
+						<li>WordPress avanzado (temas y plugins)</li>
+						<li>Node.js y PHP</li>
+						<li>Bases de datos SQL y NoSQL</li>
+						<li>Cloudflare y Serverless</li>
+					</ul>
+				</article>
+			</div>
+		</section>
+
+		<section class="values">
+			<h2>Mi filosofia de trabajo</h2>
+			<div class="grid">
+				<article class="card">
+					<h3>Codigo limpio</h3>
+					<p>
+						Escribo codigo mantenible y escalable, pensando siempre en el futuro
+						del proyecto.
+					</p>
+				</article>
+				<article class="card">
+					<h3>Rendimiento</h3>
+					<p>
+						La velocidad no es negociable. Cada milisegundo cuenta para la
+						experiencia de usuario.
+					</p>
+				</article>
+				<article class="card">
+					<h3>Transparencia</h3>
+					<p>
+						Comunicacion clara y honesta durante todo el proceso de desarrollo.
+					</p>
+				</article>
+			</div>
+		</section>
+	</section>
+</Base>
+
+<style>
+	.about {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: var(--spacing-16) var(--spacing-6);
+		display: grid;
+		gap: var(--spacing-12);
+	}
+
+	.hero {
+		max-width: 72ch;
+		display: grid;
+		gap: var(--spacing-4);
+	}
+
+	.eyebrow {
+		font-size: var(--font-size-xs);
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-muted);
+	}
+
+	.hero h1 {
+		font-size: clamp(2rem, 4vw, 3.2rem);
+		line-height: var(--leading-tight);
+	}
+
+	.hero p {
+		color: var(--color-text-secondary);
+		font-size: var(--font-size-lg);
+	}
+
+	.stack,
+	.values {
+		display: grid;
+		gap: var(--spacing-5);
+	}
+
+	.stack h2,
+	.values h2 {
+		font-size: clamp(1.4rem, 2.8vw, 2rem);
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: var(--spacing-4);
+	}
+
+	.values .grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.card {
+		border: 1px solid var(--color-border);
+		border-radius: 14px;
+		padding: var(--spacing-6);
+		background: var(--color-bg-subtle);
+	}
+
+	.card h3 {
+		margin-bottom: var(--spacing-3);
+	}
+
+	.card ul {
+		padding-left: var(--spacing-4);
+		display: grid;
+		gap: var(--spacing-2);
+	}
+
+	.card p,
+	.card li {
+		color: var(--color-text-secondary);
+	}
+
+	@media (max-width: 900px) {
+		.grid,
+		.values .grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	@media (max-width: 640px) {
+		.about {
+			padding: var(--spacing-10) var(--spacing-4);
+		}
+	}
+</style>

@@ -27,30 +27,30 @@ const results = query ? allPosts.filter((p) => matchesQuery(p, query)) : [];
 ---
 
 <Base
-	title={query ? `Search: ${query}` : "Search"}
-	description="Search blog posts"
+	title={query ? `Buscar: ${query}` : "Buscar"}
+	description="Buscar articulos del blog"
 >
 	<section class="search-page">
-		<h1 class="search-title">Search</h1>
+		<h1 class="search-title">Buscar</h1>
 
 		<form method="get" action="/search" class="search-form">
 			<input
 				type="search"
 				name="q"
 				value={query}
-				placeholder="Search posts..."
+				placeholder="Buscar articulos..."
 				class="search-input"
 				autofocus
 			/>
-			<button type="submit" class="search-button">Search</button>
+			<button type="submit" class="search-button">Buscar</button>
 		</form>
 
 		{
 			query && (
 				<p class="search-summary">
 					{results.length === 0
-						? `No results for "${query}"`
-						: `${results.length} result${results.length === 1 ? "" : "s"} for "${query}"`}
+						? `No hay resultados para "${query}"`
+						: `${results.length} resultado${results.length === 1 ? "" : "s"} para "${query}"`}
 				</p>
 			)
 		}
@@ -72,7 +72,7 @@ const results = query ? allPosts.filter((p) => matchesQuery(p, query)) : [];
 			)
 		}
 
-		{!query && <p class="search-hint">Enter a search term to find posts.</p>}
+		{!query && <p class="search-hint">Introduce un termino para buscar articulos.</p>}
 	</section>
 </Base>
 
