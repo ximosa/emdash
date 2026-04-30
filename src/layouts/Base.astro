@@ -1,5 +1,5 @@
 ---
-import { getSiteSettings } from "emdash";
+import { getSiteSettings, getMenu } from "emdash";
 import {
 	EmDashHead,
 	EmDashBodyStart,
@@ -60,15 +60,7 @@ const pageCtx = createPublicPageContext({
 	siteName: siteTitle,
 });
 
-const headerLinks = [
-	{ href: "/", label: "Inicio" },
-	{ href: "/sobre-mi", label: "Sobre mi" },
-	{ href: "/#servicios", label: "Servicios" },
-	{ href: "/#proceso", label: "Proceso" },
-	{ href: "/#proyectos", label: "Proyectos" },
-	{ href: "/posts", label: "Blog" },
-	{ href: "/contacto", label: "Contacto" },
-];
+const headerMenu = await getMenu("header");
 ---
 
 <!doctype html>
@@ -116,8 +108,8 @@ const headerLinks = [
 					/>
 						<div class="nav-links">
 							{
-								headerLinks.map((item) => (
-									<a href={item.href}>
+								headerMenu?.items.map((item) => (
+									<a href={item.url} target={item.target}>
 										{item.label}
 									</a>
 								))

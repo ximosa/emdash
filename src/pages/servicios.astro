@@ -1,0 +1,304 @@
+---
+import { getSiteSettings } from "emdash";
+import Base from "../layouts/Base.astro";
+import { resolveBlogSiteIdentity } from "../utils/site-identity";
+
+const { siteTitle } = resolveBlogSiteIdentity(await getSiteSettings());
+const seoTitle = `Servicios | ${siteTitle}`;
+const seoDescription =
+	"Desarrollo WordPress especializado y arquitecturas Headless modernas con Astro y Next.js. Soluciones web escalables y a medida para tu negocio.";
+---
+
+<Base title={seoTitle} description={seoDescription}>
+	<div class="page-header">
+		<div class="header-copy">
+			<p class="eyebrow">Servicios</p>
+			<h1>Soluciones Web Escalables y a Medida</h1>
+			<p class="lead">
+				Desde plataformas tradicionales robustas hasta arquitecturas modernas sin cabeza (Headless CMS). Aceleramos tu negocio digital con tecnología de vanguardia.
+			</p>
+		</div>
+	</div>
+
+	<section class="services-core">
+		<div class="services-grid">
+			<article class="service-card">
+				<div class="icon-wrapper">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
+				</div>
+				<h3>Desarrollo WordPress Especializado</h3>
+				<p>
+					Desarrollo de themes a medida, plugins, optimización de rendimiento y seguridad para la plataforma líder mundial. Tu web gestionable, rápida y segura.
+				</p>
+			</article>
+
+			<article class="service-card highlight-card">
+				<div class="icon-wrapper">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+				</div>
+				<h3>Arquitecturas Headless</h3>
+				<p>
+					Desacoplando el frontend del backend. Uso de WordPress como CMS sin cabeza junto con frameworks modernos como Astro o Next.js para velocidades ultrarrápidas y mayor seguridad.
+				</p>
+			</article>
+
+			<article class="service-card">
+				<div class="icon-wrapper">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+				</div>
+				<h3>Desarrollo a Medida & Código Limpio</h3>
+				<p>
+					Aplicaciones web modernas con las últimas prácticas de la industria, bases de datos optimizadas y código limpio y mantenible. Desarrollamos pensando en el futuro.
+				</p>
+			</article>
+		</div>
+	</section>
+
+	<section class="headless-highlight">
+		<div class="highlight-content">
+			<p class="eyebrow">El Futuro de la Web</p>
+			<h2>¿Por qué elegir Headless WordPress?</h2>
+			<div class="benefits-grid">
+				<div class="benefit">
+					<h4>Rendimiento Extremo</h4>
+					<p>Al generar HTML estático y enviarlo a través de un CDN, los tiempos de carga son casi instantáneos (Jamstack).</p>
+				</div>
+				<div class="benefit">
+					<h4>Seguridad Blindada</h4>
+					<p>Sin base de datos conectada directamente al frontal, eliminamos la mayoría de los vectores de ataque tradicionales de WordPress.</p>
+				</div>
+				<div class="benefit">
+					<h4>Experiencia de Edición</h4>
+					<p>Tus editores siguen usando la interfaz familiar de WordPress, mientras tus usuarios disfrutan de una experiencia web moderna.</p>
+				</div>
+				<div class="benefit">
+					<h4>SEO y Core Web Vitals</h4>
+					<p>Supera a la competencia en los buscadores con métricas de rendimiento perfectas que a Google le encantan.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="cta-section">
+		<div class="cta-box">
+			<h2>¿Listo para llevar tu proyecto al siguiente nivel?</h2>
+			<p>Construyamos algo increíble juntos.</p>
+			<a href="/contacto" class="btn btn-primary">Hablemos de tu proyecto</a>
+		</div>
+	</section>
+</Base>
+
+<style>
+	.page-header {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: var(--spacing-16) var(--spacing-6) var(--spacing-12);
+		text-align: center;
+	}
+
+	.header-copy h1 {
+		font-size: clamp(2.5rem, 6vw, 4rem);
+		line-height: 1.05;
+		margin-top: var(--spacing-4);
+		background: linear-gradient(to right, var(--color-text), var(--color-accent));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+	.lead {
+		font-size: var(--font-size-xl);
+		color: var(--color-text-secondary);
+		max-width: 65ch;
+		margin: var(--spacing-6) auto 0;
+		line-height: var(--leading-relaxed);
+	}
+
+	.eyebrow {
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: var(--tracking-wider);
+		color: var(--color-accent);
+	}
+
+	.services-core {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+		padding: 0 var(--spacing-6) var(--spacing-16);
+	}
+
+	.services-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: var(--spacing-6);
+	}
+
+	.service-card {
+		padding: var(--spacing-8);
+		border: 1px solid var(--color-border);
+		border-radius: 20px;
+		background: var(--color-bg-subtle);
+		transition: transform var(--transition-base), box-shadow var(--transition-base);
+	}
+
+	.service-card:hover {
+		transform: translateY(-4px);
+		box-shadow: var(--shadow-dropdown);
+		border-color: var(--color-border-subtle);
+	}
+
+	.highlight-card {
+		background: radial-gradient(circle at top right, rgba(0, 102, 204, 0.05) 0%, var(--color-bg) 100%);
+		border-color: var(--color-accent-ring);
+		position: relative;
+		overflow: hidden;
+	}
+
+	:root.dark .highlight-card {
+		background: radial-gradient(circle at top right, rgba(77, 159, 255, 0.1) 0%, var(--color-bg) 100%);
+	}
+
+	.highlight-card::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 4px;
+		background: var(--color-accent);
+	}
+
+	.icon-wrapper {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 48px;
+		height: 48px;
+		border-radius: 12px;
+		background: var(--color-surface);
+		color: var(--color-accent);
+		margin-bottom: var(--spacing-6);
+	}
+
+	.service-card h3 {
+		font-size: var(--font-size-xl);
+		margin-bottom: var(--spacing-4);
+	}
+
+	.service-card p {
+		color: var(--color-text-secondary);
+	}
+
+	.headless-highlight {
+		background: var(--color-text);
+		color: var(--color-bg);
+		padding: var(--spacing-20) var(--spacing-6);
+		margin: var(--spacing-12) 0;
+	}
+
+	:root.dark .headless-highlight {
+		background: var(--color-bg-subtle);
+		color: var(--color-text);
+		border-top: 1px solid var(--color-border);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.highlight-content {
+		max-width: var(--wide-width);
+		margin: 0 auto;
+	}
+
+	.headless-highlight .eyebrow {
+		color: var(--color-bg-subtle);
+		opacity: 0.8;
+	}
+
+	:root.dark .headless-highlight .eyebrow {
+		color: var(--color-accent);
+	}
+
+	.headless-highlight h2 {
+		font-size: clamp(2rem, 4vw, 3rem);
+		margin: var(--spacing-3) 0 var(--spacing-12);
+	}
+
+	.benefits-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: var(--spacing-8);
+	}
+
+	.benefit h4 {
+		font-size: var(--font-size-lg);
+		margin-bottom: var(--spacing-2);
+		display: flex;
+		align-items: center;
+		gap: var(--spacing-2);
+	}
+
+	.benefit h4::before {
+		content: "✓";
+		color: var(--color-accent);
+		font-weight: bold;
+	}
+
+	.benefit p {
+		opacity: 0.8;
+	}
+
+	.cta-section {
+		max-width: var(--content-width);
+		margin: 0 auto;
+		padding: var(--spacing-16) var(--spacing-6) var(--spacing-24);
+	}
+
+	.cta-box {
+		text-align: center;
+		padding: var(--spacing-12);
+		background: var(--color-bg-subtle);
+		border: 1px solid var(--color-border);
+		border-radius: 24px;
+	}
+
+	.cta-box h2 {
+		font-size: var(--font-size-2xl);
+		margin-bottom: var(--spacing-2);
+	}
+
+	.cta-box p {
+		color: var(--color-text-secondary);
+		margin-bottom: var(--spacing-8);
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--spacing-4) var(--spacing-8);
+		border-radius: var(--radius-lg);
+		font-weight: 600;
+		text-decoration: none;
+		transition: all var(--transition-fast);
+	}
+
+	.btn-primary {
+		background: var(--color-accent);
+		color: #ffffff;
+	}
+
+	.btn-primary:hover {
+		background: var(--color-accent-hover);
+		color: #ffffff;
+		transform: translateY(-2px);
+	}
+
+	@media (max-width: 900px) {
+		.services-grid {
+			grid-template-columns: 1fr;
+		}
+		
+		.benefits-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

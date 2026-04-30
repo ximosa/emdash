@@ -22,6 +22,12 @@ const featuredProjects = posts
 ---
 
 <Base title={seoTitle} description={seoDescription}>
+	<nav class="page-nav">
+		<a href="#servicios">Servicios</a>
+		<a href="#proceso">Proceso</a>
+		<a href="#proyectos">Proyectos</a>
+	</nav>
+
 	<section class="hero">
 		<div class="hero-copy">
 			<p class="eyebrow">Agencia digital</p>
@@ -148,6 +154,27 @@ const featuredProjects = posts
 </Base>
 
 <style>
+	.page-nav {
+		display: flex;
+		justify-content: center;
+		gap: var(--spacing-6);
+		padding: var(--spacing-4);
+		background: var(--color-bg-subtle);
+		border-bottom: 1px solid var(--color-border-subtle);
+		font-size: var(--font-size-sm);
+		font-weight: 500;
+	}
+
+	.page-nav a {
+		color: var(--color-text-secondary);
+		text-decoration: none;
+		transition: color var(--transition-fast);
+	}
+
+	.page-nav a:hover {
+		color: var(--color-text);
+	}
+
 	.hero,
 	.services,
 	.process,

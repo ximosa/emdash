@@ -117,7 +117,11 @@
 			"items": [
 				{ "type": "custom", "label": "Inicio", "url": "/" },
 				{ "type": "custom", "label": "Sobre mi", "url": "/sobre-mi" },
-				{ "type": "custom", "label": "Blog", "url": "/posts" }
+				{ "type": "custom", "label": "Servicios", "url": "/#servicios" },
+				{ "type": "custom", "label": "Proceso", "url": "/#proceso" },
+				{ "type": "custom", "label": "Proyectos", "url": "/#proyectos" },
+				{ "type": "custom", "label": "Blog", "url": "/posts" },
+				{ "type": "custom", "label": "Contacto", "url": "/contacto" }
 			]
 		}
 	],
