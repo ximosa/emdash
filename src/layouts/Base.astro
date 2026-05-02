@@ -98,14 +98,16 @@ const headerMenu = await getMenu("header");
 					}
 				</a>
 				<div class="nav-right">
-					<LiveSearch
-						placeholder="Buscar..."
-						class="site-search"
-						inputClass="site-search-input"
-						resultsClass="site-search-results"
-						resultClass="site-search-result"
-						collections={["posts", "pages"]}
-					/>
+					{Astro.url.pathname.startsWith('/posts') && (
+						<LiveSearch
+							placeholder="Buscar..."
+							class="site-search"
+							inputClass="site-search-input"
+							resultsClass="site-search-results"
+							resultClass="site-search-result"
+							collections={["posts", "pages"]}
+						/>
+					)}
 						<div class="nav-links">
 							{
 								headerMenu?.items.map((item) => (
